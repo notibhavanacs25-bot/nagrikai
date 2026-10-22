@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NagrikAI citizen assistance platform">
+  <title>NagrikAI | Citizen Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="#">NagrikAI</a>
+    <nav>
+      <a href="#documents">Documents</a>
+      <a href="#schemes">Schemes</a>
+      <a href="#about">About</a>
+    </nav>
+    <label>
+      <span class="sr-only">Choose language</span>
+      <select id="language">
+        <option value="en">English</option>
+        <option value="kn">ಕನ್ನಡ</option>
+        <option value="hi">हिन्दी</option>
+      </select>
+    </label>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">YOUR CITIZEN ASSISTANT</p>
+      <h1>Government documents, made easier.</h1>
+      <p>
+        Understand official documents, explore schemes
+        and discover your next steps in a language you prefer.
+      </p>
+      <a class="primary-btn" href="#documents">
+        Understand a document
+      </a>
+    </section>
+
+    <section class="features" id="documents">
+      <article class="feature-card">
+        <h2>Document Explainer</h2>
+        <p>Upload a document to understand its purpose and important dates.</p>
+        <label for="document">Choose a document</label>
+        <input id="document" type="file"
+          accept=".pdf,.png,.jpg,.jpeg">
+        <button id="analyzeBtn" type="button">
+          Explain document
+        </button>
+        <p id="uploadStatus" role="status"></p>
+      </article>
+
+      <article class="feature-card" id="schemes">
+        <h2>Scheme Finder</h2>
+        <p>Explore government schemes using your basic eligibility details.</p>
+        <button id="schemeBtn" type="button">
+          Explore schemes
+        </button>
+        <div id="schemeResults"></div>
+      </article>
+
+      <article class="feature-card">
+        <h2>Language Assistant</h2>
+        <p>Read an explanation aloud using your browser's speech tools.</p>
+        <button id="voiceBtn" type="button">
+          Test voice output
+        </button>
+      </article>
+    </section>
+
+    <section class="notice" id="about">
+      <h2>About NagrikAI</h2>
+      <p>
+        AI-generated explanations are for informational purposes.
+        Always confirm deadlines, eligibility and document validity
+        with the relevant official authority.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>NagrikAI · Independent citizen-assistance project</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
