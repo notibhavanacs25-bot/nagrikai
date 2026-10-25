@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Assistant | NagrikAI - Multilingual Citizen Voice Support</title>
+  <meta name="description" content="Speak in Kannada, Hindi, Telugu, Tamil, or English to ask questions about your official Indian government documents and welfare schemes.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/voice.css">
+</head>
+<body>
+  <div class="civic-ribbon"></div>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-link">
+        <div class="brand-logo-badge">
+          <i class="fa-solid fa-landmark"></i>
+        </div>
+        <div class="brand-name">
+          Nagrik<span>AI</span>
+          <span class="brand-badge" data-i18n="nav_badge">Citizen Portal</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> <span data-i18n="nav_home">Home</span></a></li>
+          <li><a href="simplify.html" class="nav-link"><i class="fa-solid fa-file-shield"></i> <span data-i18n="nav_simplify">Document Simplifier</span></a></li>
+          <li><a href="schemes.html" class="nav-link"><i class="fa-solid fa-hands-holding-circle"></i> <span data-i18n="nav_schemes">Scheme Finder</span></a></li>
+          <li><a href="voice.html" class="nav-link active"><i class="fa-solid fa-microphone-lines"></i> <span data-i18n="nav_voice">Voice Assistant</span></a></li>
+          <li><a href="updates.html" class="nav-link"><i class="fa-solid fa-bullhorn"></i> <span data-i18n="nav_updates">Govt Updates</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-selector-wrapper">
+          <i class="fa-solid fa-language lang-icon-prefix"></i>
+          <select class="lang-select" id="globalLangSelect" aria-label="Select Language">
+            <option value="en">English</option>
+            <option value="hi">हिंदी (Hindi)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+          </select>
+          <i class="fa-solid fa-chevron-down lang-icon-caret"></i>
+        </div>
+
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+
+        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="trust-banner">
+    <i class="fa-solid fa-shield-halved"></i>
+    <span data-i18n="trust_disclaimer">NagrikAI is an AI citizen-support assistant. We provide plain-language guidance and official verification links. We do not provide legal advice or represent government authorities.</span>
+  </div>
+
+  <main class="main-wrapper">
+    <div class="voice-hub-container">
+      <div class="section-header">
+        <span class="section-pill saffron"><i class="fa-solid fa-microphone-lines"></i> Accessible Voice AI</span>
+        <h1 class="section-title" data-i18n="voice_title">Multilingual Citizen Voice Assistant</h1>
+        <p class="section-subtitle" data-i18n="voice_subtitle">Speak directly in your preferred Indian language to ask questions about your documents, deadlines, or welfare schemes.</p>
+      </div>
+
+      <!-- Voice Stage -->
+      <div class="voice-interactive-stage">
+        <div class="voice-pulse-ring"></div>
+
+        <button type="button" class="voice-main-mic-btn" id="voiceMainMicBtn" aria-label="Click to Speak">
+          <i class="fa-solid fa-microphone"></i>
+        </button>
+
+        <div class="voice-status-text" id="voiceStatusText" data-i18n="voice_mic_tap">
+          Tap the microphone to speak
+        </div>
+        <div class="voice-status-subtext">
+          Supports Kannada, Hindi, Telugu, Tamil, and English. Speaks back answers automatically!
+        </div>
+
+        <!-- Sound Wave Animation -->
+        <div class="live-sound-bars" id="liveSoundBars">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <!-- Quick Question Prompts -->
+        <div class="voice-prompts-label">Or click a sample question to listen:</div>
+        <div class="voice-prompt-chips">
+          <button type="button" class="prompt-chip" data-query="Explain my property tax notice" data-i18n="voice_quick_prompt_1">"Explain my property tax notice"</button>
+          <button type="button" class="prompt-chip" data-query="Am I eligible for PM-Kisan scheme?" data-i18n="voice_quick_prompt_2">"Am I eligible for PM-Kisan scheme?"</button>
+          <button type="button" class="prompt-chip" data-query="How do I verify my land RTC record?" data-i18n="voice_quick_prompt_3">"How do I verify my land RTC record?"</button>
+          <button type="button" class="prompt-chip" data-query="What documents are needed for caste certificate?" data-i18n="voice_quick_prompt_4">"What documents are needed for caste certificate?"</button>
+        </div>
+      </div>
+
+      <!-- Chat Log Card -->
+      <div class="voice-transcript-card">
+        <h3 style="font-size: 1.1rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-comments text-primary"></i> Citizen Conversation Transcript
+        </h3>
+
+        <div class="chat-history-log" id="chatHistoryLog">
+          <div class="chat-bubble ai">
+            <div class="chat-bubble-avatar">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <div class="chat-bubble-msg">
+              Namaste! I am NagrikAI. You can ask me any question about your notices, land records, or government schemes by voice or typing below.
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input-bar">
+          <input type="text" id="chatTextInput" class="chat-text-input" placeholder="Type your question if microphone is disabled...">
+          <button type="button" id="chatSendBtn" class="btn btn-primary btn-sm" style="border-radius: var(--radius-full); padding: 0.75rem 1.25rem;">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-name">
+          Nagrik<span>AI</span>
+        </div>
+        <p>An accessible, multilingual AI platform simplifying complex Indian government documents and connecting citizens to welfare schemes.</p>
+        <div style="margin-top: 1rem;">
+          <span class="official-emblem-badge"><i class="fa-solid fa-shield-halved text-green"></i> Civic Tech for Indian Citizens</span>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Features</h4>
+        <ul class="footer-links">
+          <li><a href="simplify.html">Document Simplifier</a></li>
+          <li><a href="schemes.html">Scheme Finder</a></li>
+          <li><a href="voice.html">Voice Assistant</a></li>
+          <li><a href="updates.html">Govt Updates</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Official Portals</h4>
+        <ul class="footer-links">
+          <li><a href="https://www.digilocker.gov.in/" target="_blank">DigiLocker</a></li>
+          <li><a href="https://www.india.gov.in/" target="_blank">National Portal of India</a></li>
+          <li><a href="https://landrecords.karnataka.gov.in/" target="_blank">Bhoomi Land Records</a></li>
+          <li><a href="https://parivahan.gov.in/" target="_blank">Parivahan Sewa</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Supported Languages</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="setLanguage('en')">English</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('hi')">हिंदी (Hindi)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('kn')">ಕನ್ನಡ (Kannada)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('te')">తెలుగు (Telugu)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('ta')">தமிழ் (Tamil)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 NagrikAI Citizen Portal. Built with dedication for Indian citizens.</div>
+      <div>Designed with HTML, CSS, JavaScript & FastAPI.</div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/voice.js"></script>
+</body>
+</html>

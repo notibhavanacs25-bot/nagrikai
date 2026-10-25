@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Government Scheme Finder | NagrikAI - Citizen Assistance Portal</title>
+  <meta name="description" content="Discover Indian central and state government welfare schemes tailored to your eligibility. Get benefits, required documents, application procedures, and official portal links.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/schemes.css">
+</head>
+<body>
+  <div class="civic-ribbon"></div>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-link">
+        <div class="brand-logo-badge">
+          <i class="fa-solid fa-landmark"></i>
+        </div>
+        <div class="brand-name">
+          Nagrik<span>AI</span>
+          <span class="brand-badge" data-i18n="nav_badge">Citizen Portal</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> <span data-i18n="nav_home">Home</span></a></li>
+          <li><a href="simplify.html" class="nav-link"><i class="fa-solid fa-file-shield"></i> <span data-i18n="nav_simplify">Document Simplifier</span></a></li>
+          <li><a href="schemes.html" class="nav-link active"><i class="fa-solid fa-hands-holding-circle"></i> <span data-i18n="nav_schemes">Scheme Finder</span></a></li>
+          <li><a href="voice.html" class="nav-link"><i class="fa-solid fa-microphone-lines"></i> <span data-i18n="nav_voice">Voice Assistant</span></a></li>
+          <li><a href="updates.html" class="nav-link"><i class="fa-solid fa-bullhorn"></i> <span data-i18n="nav_updates">Govt Updates</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-selector-wrapper">
+          <i class="fa-solid fa-language lang-icon-prefix"></i>
+          <select class="lang-select" id="globalLangSelect" aria-label="Select Language">
+            <option value="en">English</option>
+            <option value="hi">हिंदी (Hindi)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+          </select>
+          <i class="fa-solid fa-chevron-down lang-icon-caret"></i>
+        </div>
+
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+
+        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="trust-banner">
+    <i class="fa-solid fa-shield-halved"></i>
+    <span data-i18n="trust_disclaimer">NagrikAI is an AI citizen-support assistant. We provide plain-language guidance and official verification links. We do not provide legal advice or represent government authorities.</span>
+  </div>
+
+  <main class="main-wrapper">
+    <div class="section-header">
+      <span class="section-pill green"><i class="fa-solid fa-hand-holding-hand"></i> Citizen Welfare Directory</span>
+      <h1 class="section-title" data-i18n="schemes_title">Citizen Welfare Scheme Finder</h1>
+      <p class="section-subtitle" data-i18n="schemes_subtitle">Enter your profile details to discover welfare schemes, subsidies, and grants for which you may be eligible.</p>
+    </div>
+
+    <!-- Eligibility Filter Form Card -->
+    <div class="filter-card">
+      <h2 style="font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-sliders text-primary"></i> Filter Schemes by Citizen Eligibility Profile
+      </h2>
+
+      <form id="schemeFilterForm">
+        <div class="filter-grid">
+          <div class="filter-group">
+            <label for="filterState" data-i18n="filter_state">State / UT</label>
+            <select id="filterState" class="filter-select">
+              <option value="all">All India (Central & All States)</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Bihar">Bihar</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterAge" data-i18n="filter_age">Your Age</label>
+            <input type="number" id="filterAge" class="filter-input" placeholder="e.g. 24" min="1" max="110">
+          </div>
+
+          <div class="filter-group">
+            <label for="filterGender" data-i18n="filter_gender">Gender</label>
+            <select id="filterGender" class="filter-select">
+              <option value="all">Any Gender</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterOccupation" data-i18n="filter_occupation">Primary Occupation</label>
+            <select id="filterOccupation" class="filter-select">
+              <option value="all">All Occupations</option>
+              <option value="farmer">Farmer / Agricultural Worker</option>
+              <option value="student">Student / Unemployed Graduate</option>
+              <option value="business">Small Business / Street Vendor</option>
+              <option value="artisan">Artisan / Traditional Craftsperson</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterIncome" data-i18n="filter_income">Annual Household Income</label>
+            <select id="filterIncome" class="filter-select">
+              <option value="all">Any Income Bracket</option>
+              <option value="100000">Below ₹ 1 Lakh (BPL / Antyodaya)</option>
+              <option value="250000">Up to ₹ 2.5 Lakh</option>
+              <option value="500000">Up to ₹ 5.0 Lakh</option>
+              <option value="800000">Up to ₹ 8.0 Lakh (Non-Creamy Layer)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-actions">
+          <button type="button" class="btn btn-outline btn-sm" onclick="resetSchemeFilters()">
+            <i class="fa-solid fa-rotate-left"></i> Reset
+          </button>
+          <button type="submit" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-magnifying-glass"></i> <span data-i18n="btn_find_schemes">Search Eligible Schemes</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Category Quick Filters -->
+    <div class="quick-categories-bar">
+      <button class="category-pill-btn active" data-category="all"><i class="fa-solid fa-border-all"></i> All Categories</button>
+      <button class="category-pill-btn" data-category="farmer"><i class="fa-solid fa-seedling"></i> Farmers & Agriculture</button>
+      <button class="category-pill-btn" data-category="student"><i class="fa-solid fa-graduation-cap"></i> Students & Youth</button>
+      <button class="category-pill-btn" data-category="women"><i class="fa-solid fa-person-dress"></i> Women Empowerment</button>
+      <button class="category-pill-btn" data-category="health"><i class="fa-solid fa-heart-pulse"></i> Healthcare & Ayushman</button>
+      <button class="category-pill-btn" data-category="business"><i class="fa-solid fa-store"></i> Small Business & Mudra</button>
+      <button class="category-pill-btn" data-category="artisan"><i class="fa-solid fa-hammer"></i> Traditional Artisans</button>
+      <button class="category-pill-btn" data-category="housing"><i class="fa-solid fa-house-chimney"></i> Housing & PMAY</button>
+    </div>
+
+    <!-- Schemes Count & Cards Grid -->
+    <div class="schemes-count-header">
+      <h2 id="schemesCountText" data-i18n="schemes_matching_title">Schemes You May Be Eligible For</h2>
+      <span class="official-emblem-badge"><i class="fa-solid fa-circle-check text-green"></i> Linked with Official Govt Portals</span>
+    </div>
+
+    <div class="schemes-grid" id="schemesGrid">
+      <!-- Injected dynamically via schemes.js -->
+    </div>
+  </main>
+
+  <!-- Scheme Details Modal Overlay -->
+  <div class="modal-overlay" id="schemeModalOverlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="badge badge-official" style="margin-bottom: 0.4rem;"><i class="fa-solid fa-landmark"></i> Official Welfare Scheme</span>
+          <h3 id="modalSchemeTitle" style="font-size: 1.4rem;">Scheme Title</h3>
+          <div id="modalSchemeDept" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">Department</div>
+        </div>
+        <button class="theme-toggle-btn" id="modalCloseBtn" style="border: none;" aria-label="Close modal">
+          <i class="fa-solid fa-xmark" style="font-size: 1.2rem;"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Benefit Card -->
+        <div style="background: var(--green-light); border: 1px solid rgba(21, 128, 61, 0.25); border-radius: var(--radius-lg); padding: 1.25rem;">
+          <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--green-dark);">Total Benefit Provided</div>
+          <div id="modalSchemeBenefit" style="font-size: 1.5rem; font-weight: 800; color: var(--green-dark); margin: 0.2rem 0;">₹ 6,000 / year</div>
+          <p id="modalSchemeBenefitDesc" style="font-size: 0.88rem; color: var(--green-dark); margin: 0;">Benefit description</p>
+        </div>
+
+        <!-- Eligibility Section -->
+        <div class="modal-section">
+          <h4><i class="fa-solid fa-user-check text-primary"></i> Stated Eligibility Requirements</h4>
+          <ul id="modalEligibilityList" style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+            <!-- Rendered via JS -->
+          </ul>
+        </div>
+
+        <!-- Required Documents -->
+        <div class="modal-section">
+          <h4><i class="fa-solid fa-file-shield text-saffron"></i> Required Documents to Apply</h4>
+          <ul id="modalDocsList" style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+            <!-- Rendered via JS -->
+          </ul>
+        </div>
+
+        <!-- Application Process -->
+        <div class="modal-section">
+          <h4><i class="fa-solid fa-route text-primary"></i> Step-by-Step Application Process</h4>
+          <div id="modalProcessList">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <span style="font-size: 0.82rem; color: var(--text-muted);">
+          <i class="fa-solid fa-shield-halved text-green"></i> Verified Govt Channel
+        </span>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" id="modalOfficialPortalBtn">
+          Apply on Official Portal <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <a href="voice.html" class="floating-voice-btn" aria-label="Open Voice Assistant">
+    <i class="fa-solid fa-microphone"></i>
+    <span class="voice-tooltip" data-i18n="hero_btn_voice">Try Voice Assistant</span>
+  </a>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-name">
+          Nagrik<span>AI</span>
+        </div>
+        <p>An accessible, multilingual AI platform simplifying complex Indian government documents and connecting citizens to welfare schemes.</p>
+        <div style="margin-top: 1rem;">
+          <span class="official-emblem-badge"><i class="fa-solid fa-shield-halved text-green"></i> Civic Tech for Indian Citizens</span>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Features</h4>
+        <ul class="footer-links">
+          <li><a href="simplify.html">Document Simplifier</a></li>
+          <li><a href="schemes.html">Scheme Finder</a></li>
+          <li><a href="voice.html">Voice Assistant</a></li>
+          <li><a href="updates.html">Govt Updates</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Official Portals</h4>
+        <ul class="footer-links">
+          <li><a href="https://pmkisan.gov.in/" target="_blank">PM-Kisan Portal</a></li>
+          <li><a href="https://beneficiary.nha.gov.in/" target="_blank">Ayushman Bharat NHA</a></li>
+          <li><a href="https://scholarships.gov.in/" target="_blank">National Scholarship Portal</a></li>
+          <li><a href="https://sevasindhuservices.karnataka.gov.in/" target="_blank">Seva Sindhu Karnataka</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Supported Languages</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="setLanguage('en')">English</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('hi')">हिंदी (Hindi)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('kn')">ಕನ್ನಡ (Kannada)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('te')">తెలుగు (Telugu)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('ta')">தமிழ் (Tamil)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 NagrikAI Citizen Portal. Built with dedication for Indian citizens.</div>
+      <div>Designed with HTML, CSS, JavaScript & FastAPI.</div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/schemes.js"></script>
+</body>
+</html>

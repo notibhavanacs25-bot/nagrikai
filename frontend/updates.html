@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Government Updates & Verification | NagrikAI - Citizen Assistance Portal</title>
+  <meta name="description" content="Stay updated with latest Indian government notifications, deadline extensions, and welfare schemes. Direct links to official verification portals.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="civic-ribbon"></div>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-link">
+        <div class="brand-logo-badge">
+          <i class="fa-solid fa-landmark"></i>
+        </div>
+        <div class="brand-name">
+          Nagrik<span>AI</span>
+          <span class="brand-badge" data-i18n="nav_badge">Citizen Portal</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> <span data-i18n="nav_home">Home</span></a></li>
+          <li><a href="simplify.html" class="nav-link"><i class="fa-solid fa-file-shield"></i> <span data-i18n="nav_simplify">Document Simplifier</span></a></li>
+          <li><a href="schemes.html" class="nav-link"><i class="fa-solid fa-hands-holding-circle"></i> <span data-i18n="nav_schemes">Scheme Finder</span></a></li>
+          <li><a href="voice.html" class="nav-link"><i class="fa-solid fa-microphone-lines"></i> <span data-i18n="nav_voice">Voice Assistant</span></a></li>
+          <li><a href="updates.html" class="nav-link active"><i class="fa-solid fa-bullhorn"></i> <span data-i18n="nav_updates">Govt Updates</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-selector-wrapper">
+          <i class="fa-solid fa-language lang-icon-prefix"></i>
+          <select class="lang-select" id="globalLangSelect" aria-label="Select Language">
+            <option value="en">English</option>
+            <option value="hi">हिंदी (Hindi)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+          </select>
+          <i class="fa-solid fa-chevron-down lang-icon-caret"></i>
+        </div>
+
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+
+        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="trust-banner">
+    <i class="fa-solid fa-shield-halved"></i>
+    <span data-i18n="trust_disclaimer">NagrikAI is an AI citizen-support assistant. We provide plain-language guidance and official verification links. We do not provide legal advice or represent government authorities.</span>
+  </div>
+
+  <main class="main-wrapper">
+    <div class="section-header">
+      <span class="section-pill green"><i class="fa-solid fa-newspaper"></i> Live Citizen Notice Board</span>
+      <h1 class="section-title">Government Updates & Verification Directory</h1>
+      <p class="section-subtitle">Real-time alerts on deadline extensions, new welfare scheme launches, and direct links to authenticated government verification portals.</p>
+    </div>
+
+    <!-- Category Filters -->
+    <div style="display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 0.75rem; margin-bottom: 2rem;">
+      <button class="btn btn-outline btn-sm update-filter-btn active" data-cat="all">All Notifications</button>
+      <button class="btn btn-outline btn-sm update-filter-btn" data-cat="deadline">Deadline Extensions</button>
+      <button class="btn btn-outline btn-sm update-filter-btn" data-cat="scheme">Scheme Launches</button>
+      <button class="btn btn-outline btn-sm update-filter-btn" data-cat="tax">Tax & Revenue</button>
+      <button class="btn btn-outline btn-sm update-filter-btn" data-cat="legal">Lok Adalat & Legal</button>
+    </div>
+
+    <!-- Feed Container -->
+    <div id="updatesFeedContainer">
+      <!-- Rendered dynamically by updates.js -->
+    </div>
+
+    <!-- Official Verification Portals Section -->
+    <section style="margin-top: 4rem;">
+      <div style="margin-bottom: 1.75rem;">
+        <span class="section-pill saffron"><i class="fa-solid fa-shield-check"></i> Official Channels</span>
+        <h2 style="font-size: 1.75rem; margin-top: 0.35rem;">Official Document Verification Directory</h2>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">Always verify legal authenticity directly on official government servers ending in .gov.in or .nic.in:</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem;" id="verificationChannelsGrid">
+        <!-- Injected via updates.js -->
+      </div>
+    </section>
+  </main>
+
+  <a href="voice.html" class="floating-voice-btn" aria-label="Open Voice Assistant">
+    <i class="fa-solid fa-microphone"></i>
+    <span class="voice-tooltip" data-i18n="hero_btn_voice">Try Voice Assistant</span>
+  </a>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-name">
+          Nagrik<span>AI</span>
+        </div>
+        <p>An accessible, multilingual AI platform simplifying complex Indian government documents and connecting citizens to welfare schemes.</p>
+        <div style="margin-top: 1rem;">
+          <span class="official-emblem-badge"><i class="fa-solid fa-shield-halved text-green"></i> Civic Tech for Indian Citizens</span>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Features</h4>
+        <ul class="footer-links">
+          <li><a href="simplify.html">Document Simplifier</a></li>
+          <li><a href="schemes.html">Scheme Finder</a></li>
+          <li><a href="voice.html">Voice Assistant</a></li>
+          <li><a href="updates.html">Govt Updates</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Official Portals</h4>
+        <ul class="footer-links">
+          <li><a href="https://www.digilocker.gov.in/" target="_blank">DigiLocker</a></li>
+          <li><a href="https://www.india.gov.in/" target="_blank">National Portal of India</a></li>
+          <li><a href="https://landrecords.karnataka.gov.in/" target="_blank">Bhoomi Land Records</a></li>
+          <li><a href="https://parivahan.gov.in/" target="_blank">Parivahan Sewa</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Supported Languages</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="setLanguage('en')">English</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('hi')">हिंदी (Hindi)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('kn')">ಕನ್ನಡ (Kannada)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('te')">తెలుగు (Telugu)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('ta')">தமிழ் (Tamil)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 NagrikAI Citizen Portal. Built with dedication for Indian citizens.</div>
+      <div>Designed with HTML, CSS, JavaScript & FastAPI.</div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/updates.js"></script>
+</body>
+</html>

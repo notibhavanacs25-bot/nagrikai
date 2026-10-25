@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NagrikAI | AI-Powered Multilingual Citizen Assistance Platform</title>
+  <meta name="description" content="NagrikAI simplifies complex Indian government and official documents in Kannada, Hindi, Telugu, Tamil, and English. Find eligible welfare schemes, action checklists, and verification channels.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Hero Styles */
+    .hero-section {
+      padding: 3.5rem 0 3rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      line-height: 1.18;
+    }
+
+    .hero-title span.highlight-saffron {
+      color: #ea580c;
+    }
+
+    .hero-title span.highlight-navy {
+      color: var(--primary-blue);
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 2.25rem;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Quick Search Bar */
+    .hero-search-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-search-bar {
+      width: 100%;
+      padding: 1.1rem 3.5rem 1.1rem 3.25rem;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--border-medium);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 1.05rem;
+      box-shadow: var(--shadow-lg);
+      outline: none;
+      transition: all var(--transition-fast);
+    }
+
+    .hero-search-bar:focus {
+      border-color: var(--primary-blue);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+    }
+
+    .search-icon-prefix {
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary-blue);
+      font-size: 1.25rem;
+      pointer-events: none;
+    }
+
+    .search-btn-suffix {
+      position: absolute;
+      right: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: var(--radius-full);
+      width: 42px;
+      height: 42px;
+      padding: 0;
+    }
+
+    /* Solution Workflow Bar */
+    .solution-flow-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem 2rem;
+      margin: 3.5rem 0;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+
+    .flow-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .flow-step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      position: relative;
+    }
+
+    .flow-step-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-lg);
+      background: var(--primary-surface);
+      color: var(--primary-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      transition: transform var(--transition-fast);
+    }
+
+    .flow-step-item:hover .flow-step-icon {
+      transform: scale(1.1);
+      background: var(--primary-navy);
+      color: white;
+    }
+
+    .flow-step-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .flow-step-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Feature Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+      margin: 3rem 0;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--transition-normal);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+
+    .feature-card-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .icon-blue { background: #eff6ff; color: #1d4ed8; }
+    .icon-saffron { background: #fff7ed; color: #ea580c; }
+    .icon-green { background: #f0fdf4; color: #15803d; }
+    .icon-purple { background: #faf5ff; color: #7e22ce; }
+
+    .feature-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-card p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="civic-ribbon"></div>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-link">
+        <div class="brand-logo-badge">
+          <i class="fa-solid fa-landmark"></i>
+        </div>
+        <div class="brand-name">
+          Nagrik<span>AI</span>
+          <span class="brand-badge" data-i18n="nav_badge">Citizen Portal</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> <span data-i18n="nav_home">Home</span></a></li>
+          <li><a href="simplify.html" class="nav-link"><i class="fa-solid fa-file-shield"></i> <span data-i18n="nav_simplify">Document Simplifier</span></a></li>
+          <li><a href="schemes.html" class="nav-link"><i class="fa-solid fa-hands-holding-circle"></i> <span data-i18n="nav_schemes">Scheme Finder</span></a></li>
+          <li><a href="voice.html" class="nav-link"><i class="fa-solid fa-microphone-lines"></i> <span data-i18n="nav_voice">Voice Assistant</span></a></li>
+          <li><a href="updates.html" class="nav-link"><i class="fa-solid fa-bullhorn"></i> <span data-i18n="nav_updates">Govt Updates</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-selector-wrapper">
+          <i class="fa-solid fa-language lang-icon-prefix"></i>
+          <select class="lang-select" id="globalLangSelect" aria-label="Select Language">
+            <option value="en">English</option>
+            <option value="hi">हिंदी (Hindi)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+          </select>
+          <i class="fa-solid fa-chevron-down lang-icon-caret"></i>
+        </div>
+
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+
+        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="trust-banner">
+    <i class="fa-solid fa-shield-halved"></i>
+    <span data-i18n="trust_disclaimer">NagrikAI is an AI citizen-support assistant. We provide plain-language guidance and official verification links. We do not provide legal advice or represent government authorities.</span>
+  </div>
+
+  <main class="main-wrapper">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <span class="section-pill saffron">
+        <i class="fa-solid fa-flag text-saffron"></i> <span data-i18n="hero_pill">Empowering Indian Citizens with AI</span>
+      </span>
+
+      <h1 class="hero-title" data-i18n="hero_title">
+        Simplify Complex Official Documents & Discover Government Schemes
+      </h1>
+
+      <p class="hero-desc" data-i18n="hero_desc">
+        Upload notices, certificates, property documents or challans. Get crystal-clear explanations in simple language, step-by-step action checklists, validity alerts, and official verification links in your mother tongue.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="simplify.html" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-file-arrow-up"></i> <span data-i18n="hero_btn_upload">Simplify a Document</span>
+        </a>
+        <a href="schemes.html" class="btn btn-saffron btn-lg">
+          <i class="fa-solid fa-hands-holding-circle"></i> <span data-i18n="hero_btn_schemes">Find Eligible Schemes</span>
+        </a>
+        <a href="voice.html" class="btn btn-outline btn-lg">
+          <i class="fa-solid fa-microphone"></i> <span data-i18n="hero_btn_voice">Try Voice Assistant</span>
+        </a>
+      </div>
+
+      <!-- Quick Search Bar -->
+      <div class="hero-search-wrapper">
+        <i class="fa-solid fa-magnifying-glass search-icon-prefix"></i>
+        <input type="text" id="homeSearchBar" class="hero-search-bar" placeholder="Search by scheme name, document type, or topic (e.g. Property Tax, PM-Kisan, RTC, Caste)...">
+        <button type="button" class="btn btn-primary btn-icon-round search-btn-suffix" onclick="handleHomeSearch()">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Overall Solution Workflow Bar -->
+    <div class="solution-flow-card">
+      <span class="section-pill green"><i class="fa-solid fa-arrow-progress"></i> Citizen Journey Workflow</span>
+      <h2 style="font-size: 1.6rem; margin-top: 0.5rem;">How NagrikAI Bridges the Gap</h2>
+      <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.25rem;">
+        From confusing bureaucratic papers to clear, verified action in 6 simple steps:
+      </p>
+
+      <div class="flow-steps-grid">
+        <div class="flow-step-item">
+          <div class="flow-step-icon icon-blue"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+          <div class="flow-step-title">1. Upload / Search</div>
+          <div class="flow-step-sub">PDF, photo, or voice query</div>
+        </div>
+
+        <div class="flow-step-item">
+          <div class="flow-step-icon icon-saffron"><i class="fa-solid fa-brain"></i></div>
+          <div class="flow-step-title">2. Understand</div>
+          <div class="flow-step-sub">Plain language translation</div>
+        </div>
+
+        <div class="flow-step-item">
+          <div class="flow-step-icon icon-green"><i class="fa-solid fa-shield-check"></i></div>
+          <div class="flow-step-title">3. Verify</div>
+          <div class="flow-step-sub">Official .gov.in channels</div>
+        </div>
+
+        <div class="flow-step-item">
+          <div class="flow-step-icon icon-purple"><i class="fa-solid fa-user-check"></i></div>
+          <div class="flow-step-title">4. Check Eligibility</div>
+          <div class="flow-step-sub">Find matching subsidies</div>
+        </div>
+
+        <div class="flow-step-item">
+          <div class="flow-step-icon icon-blue"><i class="fa-solid fa-list-check"></i></div>
+          <div class="flow-step-title">5. Know Next Steps</div>
+          <div class="flow-step-sub">Checklist & documents needed</div>
+        </div>
+
+        <div class="flow-step-item">
+          <div class="flow-step-icon icon-green"><i class="fa-solid fa-circle-check"></i></div>
+          <div class="flow-step-title">6. Take Action</div>
+          <div class="flow-step-sub">Resolve before deadline</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Platform Features Grid -->
+    <div style="margin-top: 4rem;">
+      <div class="section-header">
+        <span class="section-pill saffron"><i class="fa-solid fa-cubes"></i> Core Capabilities</span>
+        <h2 class="section-title">Designed for Every Indian Citizen</h2>
+        <p class="section-subtitle">
+          Overcoming language barriers, complex bureaucratic terminology, and scattered portals with accessible AI.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-card-icon icon-blue"><i class="fa-solid fa-file-invoice"></i></div>
+            <h3>1. Document Simplification</h3>
+            <p>Upload any PDF, image, or notice. NagrikAI identifies the document type, clarifies why you received it, and highlights amounts, fees, and references in plain words.</p>
+          </div>
+          <a href="simplify.html" class="feature-link">Explore Simplifier <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-card-icon icon-saffron"><i class="fa-solid fa-hourglass-half"></i></div>
+            <h3>2. Validity & Deadline Detection</h3>
+            <p>Never miss a response window or lose a subsidy. NagrikAI detects expiration dates, highlights urgent response deadlines, and exports reminders directly to your Google Calendar.</p>
+          </div>
+          <a href="simplify.html#tab-deadlines" class="feature-link">Check Deadlines <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-card-icon icon-green"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3>3. Official Verification Guidance</h3>
+            <p>Know exactly how to authenticate your document on DigiLocker, Bhoomi, or Parivahan. AI explanations are clearly segregated from verified official government registries.</p>
+          </div>
+          <a href="updates.html" class="feature-link">Verification Guide <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-card-icon icon-purple"><i class="fa-solid fa-clipboard-check"></i></div>
+            <h3>4. “What Should I Do Next?”</h3>
+            <p>Converts complicated procedural manuals into an interactive checklist. See exactly which supporting documents to carry, where to go, and print your step-by-step action plan.</p>
+          </div>
+          <a href="simplify.html#tab-actions" class="feature-link">View Action Checklist <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-card-icon icon-green"><i class="fa-solid fa-hands-holding-circle"></i></div>
+            <h3>5. Government Scheme Finder</h3>
+            <p>Enter your age, state, occupation, and income to discover welfare schemes (PM-Kisan, Gruha Lakshmi, Ayushman Bharat, PMAY, Mudra loans) with benefit amounts and eligibility rules.</p>
+          </div>
+          <a href="schemes.html" class="feature-link">Find Schemes <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-card">
+          <div>
+            <div class="feature-card-icon icon-saffron"><i class="fa-solid fa-microphone-lines"></i></div>
+            <h3>6. Multilingual Voice Assistant</h3>
+            <p>Designed for citizens who find official papers hard to read. Speak questions in Kannada, Hindi, Telugu, Tamil, or English and listen to spoken explanations in your regional accent.</p>
+          </div>
+          <a href="voice.html" class="feature-link">Open Voice Hub <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <a href="voice.html" class="floating-voice-btn" aria-label="Open Voice Assistant">
+    <i class="fa-solid fa-microphone"></i>
+    <span class="voice-tooltip" data-i18n="hero_btn_voice">Try Voice Assistant</span>
+  </a>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-name">
+          Nagrik<span>AI</span>
+        </div>
+        <p>An accessible, multilingual AI platform simplifying complex Indian government documents and connecting citizens to welfare schemes.</p>
+        <div style="margin-top: 1rem;">
+          <span class="official-emblem-badge"><i class="fa-solid fa-shield-halved text-green"></i> Civic Tech for Indian Citizens</span>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Features</h4>
+        <ul class="footer-links">
+          <li><a href="simplify.html">Document Simplifier</a></li>
+          <li><a href="schemes.html">Scheme Finder</a></li>
+          <li><a href="voice.html">Voice Assistant</a></li>
+          <li><a href="updates.html">Govt Updates</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Official Portals</h4>
+        <ul class="footer-links">
+          <li><a href="https://www.digilocker.gov.in/" target="_blank">DigiLocker</a></li>
+          <li><a href="https://www.india.gov.in/" target="_blank">National Portal of India</a></li>
+          <li><a href="https://landrecords.karnataka.gov.in/" target="_blank">Bhoomi Land Records</a></li>
+          <li><a href="https://parivahan.gov.in/" target="_blank">Parivahan Sewa</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Supported Languages</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="setLanguage('en')">English</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('hi')">हिंदी (Hindi)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('kn')">ಕನ್ನಡ (Kannada)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('te')">తెలుగు (Telugu)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('ta')">தமிழ் (Tamil)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 NagrikAI Citizen Portal. Built with dedication for Indian citizens.</div>
+      <div>Designed with HTML, CSS, JavaScript & FastAPI.</div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function handleHomeSearch() {
+      const query = document.getElementById("homeSearchBar")?.value.trim().toLowerCase();
+      if (!query) return;
+
+      if (query.includes("tax") || query.includes("notice") || query.includes("rtc") || query.includes("land") || query.includes("caste") || query.includes("challan")) {
+        window.location.href = `simplify.html?q=${encodeURIComponent(query)}`;
+      } else {
+        window.location.href = `schemes.html?q=${encodeURIComponent(query)}`;
+      }
+    }
+
+    document.getElementById("homeSearchBar")?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") handleHomeSearch();
+    });
+  </script>
+</body>
+</html>

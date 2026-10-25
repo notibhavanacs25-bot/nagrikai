@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Simplifier | NagrikAI - Citizen Assistance Portal</title>
+  <meta name="description" content="AI-powered Indian official document simplifier. Understand tax notices, land records, court summons, and certificates in Kannada, Hindi, Telugu, Tamil, and English.">
+  
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/simplify.css">
+</head>
+<body>
+  <!-- Civic Ribbon -->
+  <div class="civic-ribbon"></div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-link">
+        <div class="brand-logo-badge">
+          <i class="fa-solid fa-landmark"></i>
+        </div>
+        <div class="brand-name">
+          Nagrik<span>AI</span>
+          <span class="brand-badge" data-i18n="nav_badge">Citizen Portal</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> <span data-i18n="nav_home">Home</span></a></li>
+          <li><a href="simplify.html" class="nav-link active"><i class="fa-solid fa-file-shield"></i> <span data-i18n="nav_simplify">Document Simplifier</span></a></li>
+          <li><a href="schemes.html" class="nav-link"><i class="fa-solid fa-hands-holding-circle"></i> <span data-i18n="nav_schemes">Scheme Finder</span></a></li>
+          <li><a href="voice.html" class="nav-link"><i class="fa-solid fa-microphone-lines"></i> <span data-i18n="nav_voice">Voice Assistant</span></a></li>
+          <li><a href="updates.html" class="nav-link"><i class="fa-solid fa-bullhorn"></i> <span data-i18n="nav_updates">Govt Updates</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Language Selector -->
+        <div class="lang-selector-wrapper">
+          <i class="fa-solid fa-language lang-icon-prefix"></i>
+          <select class="lang-select" id="globalLangSelect" aria-label="Select Language">
+            <option value="en">English</option>
+            <option value="hi">हिंदी (Hindi)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+          </select>
+          <i class="fa-solid fa-chevron-down lang-icon-caret"></i>
+        </div>
+
+        <!-- Dark / Light Theme Toggle -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Trust & Safety Disclaimer -->
+  <div class="trust-banner">
+    <i class="fa-solid fa-shield-halved"></i>
+    <span data-i18n="trust_disclaimer">NagrikAI is an AI citizen-support assistant. We provide plain-language guidance and official verification links. We do not provide legal advice or represent government authorities.</span>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-wrapper">
+    <div class="section-header">
+      <span class="section-pill saffron"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Powered Civic Assistant</span>
+      <h1 class="section-title" data-i18n="simplify_title">AI Document Simplifier</h1>
+      <p class="section-subtitle" data-i18n="simplify_subtitle">Upload any Indian government, legal, revenue, or municipal notice to understand what it means, what to pay, and what action is required.</p>
+    </div>
+
+    <!-- Upload Dropzone -->
+    <div class="dropzone-container" id="docDropzone">
+      <input type="file" id="docFileInput" accept=".pdf,image/png,image/jpeg,image/webp" style="display: none;">
+      <div class="dropzone-icon-wrapper">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+      </div>
+      <h2 class="dropzone-title" data-i18n="upload_drag_title">Drag & Drop your document here</h2>
+      <p class="dropzone-subtitle" data-i18n="upload_drag_subtitle">Supports PDF, JPG, PNG (Max 15MB) • Clear photos of physical letters work great</p>
+      <button type="button" class="btn btn-primary" onclick="event.stopPropagation(); document.getElementById('docFileInput').click();">
+        <i class="fa-solid fa-folder-open"></i> <span data-i18n="upload_browse_btn">Browse Document</span>
+      </button>
+    </div>
+
+    <!-- Sample Official Documents Quick Selector -->
+    <div class="sample-docs-section">
+      <div class="sample-docs-header">
+        <i class="fa-solid fa-bolt text-saffron"></i>
+        <span data-i18n="or_demo_label">Or try with pre-loaded official Indian documents:</span>
+      </div>
+      <div class="sample-chips-grid">
+        <div class="sample-chip" data-sample-id="property_tax">
+          <i class="fa-solid fa-building-columns"></i>
+          <div>
+            <div class="sample-chip-text" data-i18n="sample_property_tax">Property Tax Notice (BBMP)</div>
+            <span class="sample-chip-state">Bengaluru, Karnataka</span>
+          </div>
+        </div>
+
+        <div class="sample-chip" data-sample-id="caste_income">
+          <i class="fa-solid fa-address-card"></i>
+          <div>
+            <div class="sample-chip-text" data-i18n="sample_caste_income">Income & Caste Certificate Notice</div>
+            <span class="sample-chip-state">Nadakacheri / Tahsildar</span>
+          </div>
+        </div>
+
+        <div class="sample-chip" data-sample-id="land_rtc">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <div>
+            <div class="sample-chip-text" data-i18n="sample_land_rtc">Land Record (Pahani / RTC)</div>
+            <span class="sample-chip-state">Bhoomi Revenue Cell</span>
+          </div>
+        </div>
+
+        <div class="sample-chip" data-sample-id="court_summons">
+          <i class="fa-solid fa-gavel"></i>
+          <div>
+            <div class="sample-chip-text" data-i18n="sample_court_summons">Traffic E-Challan & Lok Adalat Notice</div>
+            <span class="sample-chip-state">Parivahan / Police Command</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Document Analysis Results Area -->
+    <section class="analysis-results-area" id="analysisResultsArea">
+      <!-- Document Header Card -->
+      <div class="doc-header-card">
+        <div class="doc-header-meta">
+          <div class="doc-icon-large">
+            <i class="fa-solid fa-file-invoice"></i>
+          </div>
+          <div class="doc-title-group">
+            <span class="badge badge-ai" style="margin-bottom: 0.35rem;"><i class="fa-solid fa-robot"></i> AI Analyzed</span>
+            <h2 id="docTypeTitle">Property Tax Demand Notice</h2>
+            <div class="doc-submeta">
+              <span><i class="fa-solid fa-hashtag"></i> Ref: <strong id="docRefNo">BBMP/2026/894102</strong></span>
+              <span><i class="fa-solid fa-building"></i> <span id="docAuthority">BBMP Revenue Dept</span></span>
+              <span><i class="fa-regular fa-calendar"></i> Issued: <span id="docIssueDate">12 Oct 2026</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="doc-header-actions">
+          <span class="badge badge-urgent" id="docStatusBadge">Action Required</span>
+          <button type="button" class="btn btn-outline btn-sm" id="btnDownloadPlan">
+            <i class="fa-solid fa-print"></i> <span data-i18n="btn_download_plan">Download Action Plan (PDF)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Voice Readout Bar -->
+      <div class="voice-readout-bar">
+        <div class="voice-info">
+          <div class="voice-wave-anim" id="voiceWaveAnim">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div>
+            <strong>Listen to this explanation in your mother tongue</strong>
+            <p style="font-size: 0.8rem; opacity: 0.9;">Available in Kannada, Hindi, Telugu, Tamil, and English</p>
+          </div>
+        </div>
+        <div class="voice-controls">
+          <button type="button" class="voice-btn-play" id="voicePlayBtn">
+            <i class="fa-solid fa-volume-high"></i>
+            <span id="voicePlayText" data-i18n="btn_listen_audio">Read Aloud (Voice)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="tabs-nav">
+        <button type="button" class="tab-btn active" data-tab="overview">
+          <i class="fa-solid fa-book-open-reader"></i> <span data-i18n="tab_overview">Overview & Meaning</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="actions">
+          <i class="fa-solid fa-list-check"></i> <span data-i18n="tab_actions">What Should I Do Next?</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="deadlines">
+          <i class="fa-solid fa-clock"></i> <span data-i18n="tab_deadlines">Validity & Deadlines</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="verification">
+          <i class="fa-solid fa-shield-check"></i> <span data-i18n="tab_verification">Official Verification</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: Overview & Meaning -->
+      <div class="tab-content active" id="tab-overview">
+        <div class="overview-grid">
+          <div class="explanation-card">
+            <div class="section-tag"><i class="fa-solid fa-sparkles"></i> <span data-i18n="ai_explanation_label">Plain Citizen Explanation</span></div>
+            <div class="explanation-text" id="aiExplanationText">
+              Loading plain citizen explanation...
+            </div>
+
+            <div class="why-received-box">
+              <h4><i class="fa-solid fa-circle-question"></i> <span data-i18n="why_received">Why Did You Receive This?</span></h4>
+              <p id="whyReceivedText">Checking database...</p>
+            </div>
+
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Bureaucratic Jargon Buster</h3>
+            <div class="jargon-buster-list" id="jargonBusterList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- At a Glance Card -->
+          <div class="glance-card">
+            <h3 style="font-size: 1.15rem; border-bottom: 2px solid var(--border-light); padding-bottom: 0.5rem;" data-i18n="important_details">
+              Key Details At A Glance
+            </h3>
+            
+            <div class="glance-item">
+              <div class="glance-label" data-i18n="fees_payable">Fees / Amount Due</div>
+              <div class="glance-value amount" id="glanceAmount">₹ 4,850</div>
+            </div>
+
+            <div class="glance-item">
+              <div class="glance-label">Payment Due Date</div>
+              <div class="glance-value deadline" id="glanceDueDate">30 November 2026</div>
+            </div>
+
+            <div class="glance-item">
+              <div class="glance-label">Early-Bird Discount</div>
+              <div class="glance-value" style="color: var(--green); font-size: 0.95rem;" id="glanceRebate">5% Discount Applicable</div>
+            </div>
+
+            <div class="glance-item">
+              <div class="glance-label">Delay Penalty Terms</div>
+              <div class="glance-value" style="color: #dc2626; font-size: 0.9rem;" id="glancePenalty">2% interest per month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: What Should I Do Next? (Action Checklist) -->
+      <div class="tab-content" id="tab-actions">
+        <div class="checklist-container">
+          <div class="progress-header">
+            <span data-i18n="checklist_title">Step-by-Step Action Plan</span>
+            <span id="checklistProgressText">0 of 4 steps completed (0%)</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="checklistProgressFill"></div>
+          </div>
+
+          <div class="action-steps-list" id="actionStepsList">
+            <!-- Rendered via JS -->
+          </div>
+
+          <div class="required-docs-box">
+            <h4><i class="fa-solid fa-folder-closed"></i> <span data-i18n="required_docs_title">Required Supporting Documents to Carry</span></h4>
+            <div class="doc-items-grid" id="requiredDocsList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <button type="button" class="btn btn-primary" onclick="window.print()">
+              <i class="fa-solid fa-file-pdf"></i> <span data-i18n="btn_download_plan">Download Action Plan (PDF)</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="btnAddToCalendar">
+              <i class="fa-regular fa-calendar-plus"></i> <span data-i18n="btn_add_calendar">Add Deadline to Calendar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: Validity & Deadlines -->
+      <div class="tab-content" id="tab-deadlines">
+        <div class="deadline-card-large">
+          <div class="countdown-box">
+            <span class="badge badge-urgent"><i class="fa-solid fa-triangle-exclamation"></i> Action Deadline</span>
+            <div class="countdown-number" id="daysRemainingCount">18</div>
+            <div class="countdown-label">Days Remaining to Avoid Penalty</div>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+              Official Final Due Date: <strong id="officialDueDateText">30 November 2026</strong>
+            </p>
+          </div>
+
+          <div class="calendar-action-box">
+            <h3 style="margin-bottom: 0.5rem;">Never Miss a Government Deadline</h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+              Add this deadline to your Google Calendar or download an automated reminder to protect your property and avoid late fee penalties.
+            </p>
+            <button type="button" class="btn btn-primary" onclick="addDeadlineToCalendar()">
+              <i class="fa-brands fa-google"></i> Add to Google Calendar
+            </button>
+            <div style="background: var(--bg-alt); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">
+              <i class="fa-solid fa-bell text-saffron"></i> <strong>NagrikAI Tip:</strong> Paying 15 days before the final deadline guarantees your bank payment clearance updates in the municipal portal before server traffic increases.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: Official Verification Guidance -->
+      <div class="tab-content" id="tab-verification">
+        <div class="verification-card">
+          <div class="auth-badge-banner">
+            <i class="fa-solid fa-certificate"></i>
+            <div>
+              <h3 style="color: var(--green-dark); margin-bottom: 0.25rem;">Official Authentication Guide</h3>
+              <p style="font-size: 0.9rem; color: var(--text-primary);">
+                NagrikAI explains documents, but only official state and central government portals can legally authenticate certificates. Here is where and how to verify this document:
+              </p>
+            </div>
+          </div>
+
+          <div class="verification-steps-list">
+            <div class="verif-step-row">
+              <div class="verif-step-num">1</div>
+              <div>
+                <strong>Check Digital Barcode or QR Code</strong>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Official Indian certificates feature a 2D QR Code. Scan it using the official DigiLocker app or state scanner to see the digitally signed government payload.</p>
+              </div>
+            </div>
+
+            <div class="verif-step-row">
+              <div class="verif-step-num">2</div>
+              <div>
+                <strong>Verify on Official Government Portal: <span id="verifPortalName">State Portal</span></strong>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Enter the Reference Number shown on this document directly on the secured government (.gov.in or .nic.in) portal.</p>
+              </div>
+            </div>
+
+            <div class="verif-step-row">
+              <div class="verif-step-num">3</div>
+              <div>
+                <strong>Cross-check with DigiLocker Repository</strong>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Legally recognized documents are available in your DigiLocker under the Information Technology (Preservation and Retention of Information by Intermediaries Providing Digital Locker Facilities) Rules, 2016.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <a href="https://bbmptax.karnataka.gov.in/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="verifPortalLink">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Official Government Portal
+            </a>
+          </div>
+
+          <!-- Crucial Trust Distinction Banner -->
+          <div class="distinction-footer-box">
+            <strong style="color: var(--primary-navy);"><i class="fa-solid fa-scale-balanced"></i> Important Citizen Notice:</strong>
+            NagrikAI is an AI-powered readability and informational assistant. It does not issue official approvals, modify government databases, or act as legal counsel. For contested disputes or court summons, always consult registered advocates or visit your Taluk Legal Services Committee (TLSC).
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating Voice Assistant Button -->
+  <a href="voice.html" class="floating-voice-btn" aria-label="Open Voice Assistant">
+    <i class="fa-solid fa-microphone"></i>
+    <span class="voice-tooltip" data-i18n="hero_btn_voice">Try Voice Assistant</span>
+  </a>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-name">
+          Nagrik<span>AI</span>
+        </div>
+        <p>An accessible, multilingual AI platform simplifying complex Indian government documents and connecting citizens to welfare schemes.</p>
+        <div style="margin-top: 1rem;">
+          <span class="official-emblem-badge"><i class="fa-solid fa-shield-halved text-green"></i> Civic Tech for Indian Citizens</span>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Features</h4>
+        <ul class="footer-links">
+          <li><a href="simplify.html">Document Simplifier</a></li>
+          <li><a href="schemes.html">Scheme Finder</a></li>
+          <li><a href="voice.html">Voice Assistant</a></li>
+          <li><a href="updates.html">Govt Updates</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Official Portals</h4>
+        <ul class="footer-links">
+          <li><a href="https://www.digilocker.gov.in/" target="_blank">DigiLocker</a></li>
+          <li><a href="https://www.india.gov.in/" target="_blank">National Portal of India</a></li>
+          <li><a href="https://landrecords.karnataka.gov.in/" target="_blank">Bhoomi Land Records</a></li>
+          <li><a href="https://parivahan.gov.in/" target="_blank">Parivahan Sewa</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Supported Languages</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="setLanguage('en')">English</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('hi')">हिंदी (Hindi)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('kn')">ಕನ್ನಡ (Kannada)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('te')">తెలుగు (Telugu)</a></li>
+          <li><a href="javascript:void(0)" onclick="setLanguage('ta')">தமிழ் (Tamil)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 NagrikAI Citizen Portal. Built with dedication for Indian citizens.</div>
+      <div>Designed with HTML, CSS, JavaScript & FastAPI.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/simplify.js"></script>
+</body>
+</html>
